@@ -6,6 +6,18 @@ export default function app() {
         <div>
             <h1>JSX</h1>
             <span>My first JSX span!</span>
+            <FirstName/>  
         </div>
     );
+}
+
+
+export class FirstName extends React.Component {  
+    render() {  
+        return (  
+            <div>  
+                <p>First Name: Vijai Anand</p>  
+            </div>  
+        );  
+    }  
 }
