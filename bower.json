@@ -1,0 +1,28 @@
+{
+  "name": "react-setup-tutorial",
+  "description": "",
+  "main": "src/index.js",
+  "authors": [
+    "Arnav Aggarwal"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "webpack",
+    "babel",
+    "node",
+    "express"
+  ],
+  "homepage": "https://github.com/arnav-aggarwal/react-setup-tutorial",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.6.1",
+    "jquery": "^3.2.1"
+  }
+}
