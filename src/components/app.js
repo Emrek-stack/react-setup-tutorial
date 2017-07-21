@@ -16,7 +16,7 @@ export class FirstName extends React.Component {
     render() {  
         return (  
             <div>  
-                <p>First Name: Vijai Anand</p>  
+                <p>First Name: Emre Karahan</p>  
             </div>  
         );  
     }  
