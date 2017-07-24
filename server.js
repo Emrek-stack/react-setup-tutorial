@@ -1,5 +1,8 @@
 const express = require('express');
+var exphbs = require('express-handlebars');
 const path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 
 var bodyParser = require('body-parser');
 
@@ -8,9 +11,27 @@ var bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(bodyParser.json());
+
 app.set('port', port);
 app.use(express.static(path.join(__dirname, './dist')));
+
+app.engine('.hbs', exphbs({
+        defaultLayout: 'main', 
+        extname: '.hbs',
+        layoutsDir:'views/layouts',
+        partialsDir:'views/partials'
+}));
+app.set('view engine', '.hbs');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.get('*', (req, res) => {
 //     console.log('Serving ', req.url);
