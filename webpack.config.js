@@ -17,6 +17,7 @@ var config = {
         "jquery": "$",
         'react': 'React',
         'react-dom': 'ReactDOM',
+        'node-fetch': 'fetch'
     },
     module: {
         rules: [{

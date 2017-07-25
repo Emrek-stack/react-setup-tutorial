@@ -24,6 +24,7 @@
   "dependencies": {
     "react": "^15.6.1",
     "jquery": "^3.2.1",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "axios": "^0.16.2"
   }
 }

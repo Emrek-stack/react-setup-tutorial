@@ -1,4 +1,5 @@
 import React from 'react';
+import fetch from 'node-fetch';
 import '../styles/app.css';
 
 export default function app() {
