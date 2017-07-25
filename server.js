@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 const WEB_CONTROLLER_PATH = 'controllers';
+const API_CONTROLLER_PATH = 'api';
 
 
 
@@ -42,11 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.listen(port, () => console.log('Listening on port', port));
 
-// var apiRouter = express.Router();
-// app.use('/', apiRouter);
 
-// var apiV1 = express.Router();
-// apiRouter.use('/', apiV1);
 
 // var playersApiV1 = express.Router();
 // app.use('/players', playersApiV1);
@@ -59,10 +56,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-registerControllers(WEB_CONTROLLER_PATH);
+ var apiRouter = express.Router();
+ app.use('/api', apiRouter);
+
+ var apiV1 = express.Router();
+ apiRouter.use('/v1', apiV1);
+
+registerControllers(WEB_CONTROLLER_PATH, app);
+registerControllers(API_CONTROLLER_PATH, apiV1);
 
 
-function registerControllers(controllerPath) {
+function registerControllers(controllerPath, registerRouter) {
   // MVC Controllers
   var controllerList = [];
   fs.readdirSync(path.join(__dirname, controllerPath)).forEach(function (file) {
@@ -70,7 +74,7 @@ function registerControllers(controllerPath) {
       var basePath = path.basename(file, ".js");
       var Controller = require(`./${controllerPath}/${file}`);
       var router = express.Router();
-      app.use(`/${basePath}`, router);
+      registerRouter.use(`/${basePath}`, router);
       controllerList[basePath] = new Controller(router);
     }
   });

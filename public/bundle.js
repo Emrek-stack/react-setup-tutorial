@@ -515,7 +515,7 @@ function updateLink (link, options, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
-module.exports = __webpack_require__(14);
+module.exports = __webpack_require__(13);
 
 
 /***/ }),
@@ -539,15 +539,10 @@ var _app2 = _interopRequireDefault(_app);
 
 __webpack_require__(11);
 
-var _jquery = __webpack_require__(13);
-
-var $ = _interopRequireWildcard(_jquery);
-
-var JQuery = _interopRequireWildcard(_jquery);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import * as $ from 'jquery';
+// import * as JQuery from 'jquery';
 
 var container = document.getElementById('container');
 _reactDom2.default.render(_react2.default.createElement(_app2.default, null), container);
@@ -851,18 +846,12 @@ exports.push([module.i, "html, body {\r\n    font-family: sans-serif;\r\n    bac
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports) {
-
-module.exports = $;
-
-/***/ }),
-/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__dirname) {
 
-var path = __webpack_require__(15);
+var path = __webpack_require__(14);
 var VENDOR_PATH = __dirname + '/node_modules';
 
 var config = {
@@ -904,7 +893,7 @@ module.exports = config;
 /* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -1132,10 +1121,10 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
