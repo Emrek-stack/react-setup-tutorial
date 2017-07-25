@@ -16,8 +16,13 @@ class PlayersController {
     }
 
     getPlayers(req, res) {
-        var players = PlayersService.getPlayers();
-        res.send(players);
+        // var players = PlayersService.getPlayers();
+        // res.send(players);
+        res.render('admin/blog/create', {
+            title: 'aa',
+            root: req.root,
+            layout: 'blogLayout.hbs'
+        });
     }
 
     getSinglePlayer(req, res) {
