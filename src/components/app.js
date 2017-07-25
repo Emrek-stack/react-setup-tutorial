@@ -1,5 +1,5 @@
 import React from 'react';
-import fetch from 'node-fetch';
+import axios from 'axios';
 import '../styles/app.css';
 
 export default function app() {
@@ -14,11 +14,35 @@ export default function app() {
 
 
 export class FirstName extends React.Component {  
+
+
+    constructor()
+    {
+        super();
+        this.state = { posts: null}
+    }
+
+    componentDidMount()
+    {
+            axios.get(
+                'http://date.jsontest.com/', 
+               ).then(res => {
+                   console.log(res.data);
+        const posts = res.data;
+        this.setState({ posts });        
+      });
+    }
+
     render() {  
+        if (this.state.posts) { 
         return (  
-            <div>  
-                <p>First Name: Emre Karahan</p>  
+            <div> 
+                
+                <p>{this.state.posts.time}</p>  
+                
             </div>  
         );  
+        }
+ return <div>Loading...</div>;
     }  
 }

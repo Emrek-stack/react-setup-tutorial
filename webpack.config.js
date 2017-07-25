@@ -16,8 +16,8 @@ var config = {
     externals: {
         "jquery": "$",
         'react': 'React',
-        'react-dom': 'ReactDOM',
-        'node-fetch': 'fetch'
+        'react-dom': 'ReactDOM',        
+        'axios': 'axios'
     },
     module: {
         rules: [{
