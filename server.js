@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-const CONTROLLER_PATH = 'controllers';
+const WEB_CONTROLLER_PATH = 'controllers';
 
 
 
@@ -48,30 +48,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 // var apiV1 = express.Router();
 // apiRouter.use('/', apiV1);
 
-var playersApiV1 = express.Router();
-app.use('/players', playersApiV1);
+// var playersApiV1 = express.Router();
+// app.use('/players', playersApiV1);
 
 // var boardsApiV1 = express.Router();
 // apiV1.use('/leaderboards', boardsApiV1);
 
-var PlayersController = require('./controllers/players');
-var pc = new PlayersController(playersApiV1);
-// var BoardsController = require('./controllers/boards');
-// var bc = new BoardsController(boardsApiV1);
-// var ScoresController = require('./controllers/scores');
-// var sc = new ScoresController(boardsApiV1);
+// var PlayersController = require('./controllers/players');
+// var pc = new PlayersController(playersApiV1);
 
-// MVC Controllers
-var controllerList = {};
-fs.readdirSync(path.join(__dirname, "controllers")).forEach(function (file) {
-  if (file.substr(-3) === ".js") {
-    var basePath = path.basename(file, ".js");
-    var Controller = require(`./controllers/${file}`);    
-    var router = express.Router();
-    app.use(`/${basePath}`, router);
-    controllerList[basePath] = new Controller(router);
-  }
-})
+
+
+registerControllers(WEB_CONTROLLER_PATH);
+
+
+function registerControllers(controllerPath) {
+  // MVC Controllers
+  var controllerList = [];
+  fs.readdirSync(path.join(__dirname, controllerPath)).forEach(function (file) {
+    if (file.substr(-3) === ".js") {
+      var basePath = path.basename(file, ".js");
+      var Controller = require(`./${controllerPath}/${file}`);
+      var router = express.Router();
+      app.use(`/${basePath}`, router);
+      controllerList[basePath] = new Controller(router);
+    }
+  });
+}
+
+
 
 
 // seed the db for testing
