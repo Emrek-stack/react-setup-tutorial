@@ -1,10 +1,12 @@
 const express = require('express');
 var exphbs = require('express-handlebars');
 const path = require('path');
+const fs = require('fs');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-
 var bodyParser = require('body-parser');
+
+const CONTROLLER_PATH = 'controllers';
 
 
 
@@ -58,6 +60,19 @@ var pc = new PlayersController(playersApiV1);
 // var bc = new BoardsController(boardsApiV1);
 // var ScoresController = require('./controllers/scores');
 // var sc = new ScoresController(boardsApiV1);
+
+// MVC Controllers
+var controllerList = {};
+fs.readdirSync(path.join(__dirname, "controllers")).forEach(function (file) {
+  if (file.substr(-3) === ".js") {
+    var basePath = path.basename(file, ".js");
+    var Controller = require(`./controllers/${file}`);    
+    var router = express.Router();
+    app.use(`/${basePath}`, router);
+    controllerList[basePath] = new Controller(router);
+  }
+})
+
 
 // seed the db for testing
 var PlayersService = require('./services/players');
